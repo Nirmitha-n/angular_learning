@@ -1,0 +1,15 @@
+input{
+    width: 80%;
+    border-radius: 5px;
+    background-color:rgb(250, 215, 215);
+    
+}
+
+label{
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.form-details{
+    text-align: center;
+}

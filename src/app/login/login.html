@@ -1,0 +1,60 @@
+<div id="register-full" class="container-fluid vh-100">
+    <div class="row h-100">
+        <div class="col-md-6 d-flex justify-content-center align-items-center bg-light">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/000/517/014/small/Healthcare_Character.jpg"
+                alt="health-care">
+        </div>
+        <div id="form-id" class="col-md-6 d-flex justify-content-center align-items-center">
+            <div class="form-box shadow">
+                <div class="card shadow login-card">
+                    <div class="card-header tect-center text-white bg-primary">
+                        <h3 class="text-start mb-2">Login</h3>
+                    </div>
+                    <div class="card-body">
+                        <form #form="ngForm" (ngSubmit)="login(form)">
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number <span class="text-danger">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-telephone"></i>
+                                    </span>
+                                    <input type="number" name="pnumber" class="form-control" minlength="10"
+                                        placeholder="Enter Phone Number" [(ngModel)]="user.pnumber" required
+                                        #pnumber="ngModel" />
+                                </div>
+                                <div class="text-danger mt-1"
+                                    *ngIf="pnumber.invalid && (pnumber.dirty || pnumber.touched)">
+                                    <small class="pnumber.errors && pnumber.errors['required']">Phone number
+                                        required</small>
+                                    <small class="pnumber.errors && pnumber.errors['minlength']">Phone number must be
+                                        atleast 10 numbers</small>
+                                </div>
+
+
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password <span class="text-danger">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+                                    <input [type] = "showPassword ? 'text' : 'password'"  name="password" placeholder="Enter Password" class="form-control" minlength="6" maxlength="10" required [(ngModel)] = "user.password" #password = "ngModel">
+                                    <span class="input-group-text" (click) = "togglePassword()" style="cursor: pointer;"><i class="bi" [ngClass] = "showPassword ? 'bi-eye' : 'bi-eye-slash'"></i></span>
+                                </div>
+                                <div class="text-danger nt-1" *ngIf="password.invalid && (password.dirty || password.touched)">
+                                    <small class="password.errors && password.errors['minlength']">Password must be atleast 6 characters</small>
+                                    <small class="password.errors && password.errors['maxlength']">Password should be within 10 characters</small>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" [disabled] = 'form.invalid' [class.opacity-50] = 'form.invalid' class="btn btn-primary w-100">Login</button>
+                            </div>
+                            <p class="text-end mt-3">Don't have an account? <a routerLink="/register">Register</a> </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<div id="register-full" class="container-fluid vh-100">
+    <div class="row h-100">
+        <div class="col-md-6 d-flex justify-content-center align-items-center bg-light">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/000/517/014/small/Healthcare_Character.jpg"
+                alt="health-care" class="img-fluid left-img">
+        </div>
+        <div id="form-id" class="col-md-6 d-flex justify-content-center align-items-center ">
+            <div class="form-box shadow">
+                <div class="card shadow signup-card">
+                    <div class="card-header text-center text-white bg-primary">
+                        <h3 class="text-start mb-2 ">Register</h3>
+                    </div>
+                    <div class="card-body">
+                        <form #form="ngForm" (ngSubmit)="register(form)">
+                            <div class="mb-3">
+
+                                <label class="form-label" for="fname">Full Name <span class="text-danger">*</span>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-person"></i>
+                                    </span>
+                                    <input type="text" name="fname" placeholder="Enter Full Name" minlength="3" class="form-control"
+                                        [(ngModel)]="users.fname" required #fnameField="ngModel" />
+
+                                </div>
+                                <div class="text-danger mt-1" *ngIf="fnameField.invalid && (fnameField.dirty ||fnameField.touched )">
+                                    <small *ngIf ="fnameField.errors && fnameField.errors['required']">*Name is required</small>
+                                    <small *ngIf ="fnameField.errors && fnameField.errors['minlength']">*Name must be atleast 3 characters.</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label" for="email">Email <span class="text-danger">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-envelope"></i>
+                                    </span>
+                                    <input type="email" name="email" placeholder="Enter email address" class="form-control"
+                                        [(ngModel)]="users.email" email required #emailField="ngModel" />
+
+                                </div>
+                                 <div class="text-danger mt-1" *ngIf="emailField.invalid && (emailField.dirty ||emailField.touched)">
+                                    <small *ngIf ="emailField.errors && emailField.errors['required']">*Email is required</small>
+                                    <small *ngIf ="emailField.errors && emailField.errors['email']">*Email must be valid.</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Password <span class="text-danger">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+                                    <input [type] = "showPassword ? 'text' : 'password'" name="password" class="form-control"
+                                       placeholder="Enter Password" [(ngModel)]="users.password" minlength="6" maxlength="10" required
+                                        #passwordField="ngModel" />
+                                        <span class="input-group-text" (click) = "togglePassword()"  style="cursor: pointer;"><i class="bi" [ngClass] = 'showPassword ? "bi-eye" : "bi-eye-slash"'></i></span>
+
+                                </div>
+                                <div class="text-danger mt-1"
+                                    *ngIf="passwordField.errors?.['maxlength'] && passwordField.touched">
+                                  <small> Maximum 10 characters allowed</small> 
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="cpassword">Confirm Password <span class="text-danger">*</span> </label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i class="bi bi-lock"></i>
+                                    </span>
+                                    <input [type] = "showConfirmPassword ? 'text' : 'password'" name="cpassword" class="form-control" placeholder="Enter Confirm Password"
+                                        [(ngModel)]="users.cpassword" required #cpasswordField="ngModel" />
+                                   <span class="input-group-text" (click) = "toggleConfirmPassword()" style="cursor: pointer;"><i class="bi" [ngClass] = 'showConfirmPassword ? "bi-eye" : "bi-eye-slash"'></i></span> 
+                                </div>
+                                
+                                <div class="text-danger mt-1" *ngIf="cpasswordField.value !== passwordField.value">
+                                  <small>  Password and Confirm Password should be same</small>
+                                </div>
+                               
+
+                            </div>
+                             <div class="form-check mb-3">
+                                    <input class="form-check-input"  type="checkbox" required/>
+                                    <label class="form-check-label">I agree to the <a href="#">Terms & Conditions</a></label>
+                                </div>
+                            <div>
+                                <button type="submit" [disabled] = 'form.invalid' [class.opacity-50] = 'form.invalid' class="btn btn-primary w-100">Register</button>
+                            </div>
+                            <p class="tect-center mt-3">Already have an account? <a routerLink="/login">Login</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

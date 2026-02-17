@@ -1,0 +1,27 @@
+.left-img{
+    width: 80%;
+    height: auto;
+}
+
+.form-box{
+    width: 100%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+}
+
+body{
+    overflow: hidden;
+}
+
+#form-id{
+    background-image: url("https://www.hdwallpapers.in/download/white_flowers_branches_in_white_background_hd_white_aesthetic-1920x1080.jpg");
+    background-color: #f0f0f0;
+}
+
+.signup-card{
+    width: 100%;
+    max-width: 450px;
+    border-radius: 10px;
+    overflow: hidden;
+}
