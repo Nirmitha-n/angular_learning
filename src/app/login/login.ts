@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from "@angular/forms";
 import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './login.css',
 })
 export class Login {
+
+  constructor(private router: Router){}
     user = {
       pnumber : '',
       password : ''
@@ -28,13 +31,21 @@ export class Login {
     login (form : any){
       if(form.invalid){
         alert("Invalid Credentials!");
+        return;
       }
-
+      const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+      
+      if(
+        storedUser.pnumber === this.user.pnumber &&
+        storedUser.password === this.user.password
+      ){
+        alert("Login Succesful!");
+        this.router.navigate(['/dashboard']);
+      }
       else{
-        console.log(form.value);
-        alert("Logined succesfully!");
+        alert("Mobile number or password is incorrect")
       }
-
+      
       form.resetForm();
     }
         

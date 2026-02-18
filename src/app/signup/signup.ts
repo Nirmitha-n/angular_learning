@@ -18,9 +18,12 @@ export class Signup {
   users = {
     fname:'',
     email: '',
+    pnumber:'',
     password: '',
     cpassword: '',
   };
+
+  acceptTerms:boolean = false;
 
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
@@ -34,14 +37,16 @@ export class Signup {
   }
 
   register(form: any){
-    if(form.invalid){
-      alert("Invalid credentials!");
+    if(form.invalid || !this.acceptTerms){
+      alert("Please fill all fields and accept terms!");
     }
     else{
+      localStorage.setItem('user', JSON.stringify(this.users))
       console.log(form.value)
       alert("User registered successfully!");
     }
     form.resetForm();
+    this.acceptTerms = false;
     this.router.navigate(['/login']);
     
 }

@@ -1,0 +1,41 @@
+
+    
+
+<div class="container-fluid vh-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary text-white px-3">
+        <h4 class="me-4 text-white">HealthCare</h4>
+
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item mx-2">Home</li>
+            <li class="nav-item mx-2">Find Doctor</li>
+            <li class="nav-item mx-2">Appointments</li>
+
+            <li class="nav-item mx-2">
+                <select class="form-select" [(ngModel)]="selectedCity" name="slectedCity">
+                    <option value="" disabled selected>--Select--</option>
+                    <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+                </select>
+            </li>
+        </ul>
+        <button class="btn btn-light" (click)="logout()">Logout</button>
+    </nav>
+
+    <div class="container mt-4" style="cursor: pointer;">
+        <h3 class="text-center">Good health is not something we can buy...</h3>
+
+        <p *ngIf="selectedCity">
+            Selected City: <b>{{selectedCity}}</b>
+        </p>
+
+        <div class="row mt-4" style="cursor: pointer;">
+            <div class="col-md-6 mb-4"  *ngFor="let card of cards">
+                <div class="card dashboard-card shadow text-center p-3 bg-primary p-2 text-dark bg-opacity-10" style=" border-color: #A1D0FF;">
+                    <h5><strong>{{card.title}}<i class=""></i></strong></h5>
+                    <p>{{card.desc}}</p>
+                </div>
+
+            </div>
+           
+        </div>
+    </div>
+</div>
